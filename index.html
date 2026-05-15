@@ -203,8 +203,16 @@
     font-size: clamp(2rem, 5vw, 3.4rem);
     color: #fff;
     line-height: 1.22;
-    margin-bottom: 28px;
+    margin-bottom: 12px;
     animation: fadeUp 0.7s 0.15s ease both;
+  }
+  /* CHANGE 2: New subtitle paragraph under main title */
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(220, 228, 240, 0.75);
+    font-weight: 400;
+    margin-bottom: 20px;
+    animation: fadeUp 0.7s 0.25s ease both;
   }
   .hero p {
     font-size: clamp(1rem, 2vw, 1.15rem);
@@ -420,7 +428,14 @@
 
   /* GALLERY */
   .gallery-section { background: #ffffff; }
-  .gallery-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+  /* CHANGE 1: Center the gallery button */
+  .gallery-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    justify-content: center;
+  }
   .gallery-btn {
     padding: 13px 28px;
     border-radius: 50px;
@@ -428,6 +443,9 @@
     cursor: pointer; border: 2px solid transparent;
     transition: all var(--transition);
     font-family: 'Heebo', sans-serif;
+    /* CHANGE 1: Mobile-friendly touch target */
+    min-height: 48px;
+    min-width: 200px;
   }
   .gallery-btn.active, .gallery-btn:hover {
     background: var(--accent); color: #fff; border-color: var(--accent);
@@ -651,6 +669,8 @@
   <div class="hero-content">
     <div class="hero-badge">🏆 18 שנות ניסיון ומקצועיות</div>
     <h1>ברוכים הבאים ל<span style="color:#1565d8;">אייר</span>&nbsp;<span style="color:#ffffff;">פרו</span>&nbsp;<span style="color:#e02020;">360°</span></h1>
+    <!-- CHANGE 2: New subtitle paragraph -->
+    <p class="hero-subtitle">פתרונות מיזוג אוויר ובנייה</p>
     <p>
       חברה המתמחה בפתרונות מתקדמים בתחום המיזוג, הבנייה והשיפוצים – תחת קורת גג אחת.<br>
       אנחנו מלווים לקוחות פרטיים, עסקים, משרדים, חנויות ופרויקטים חדשים, משלב התכנון ועד למסירת עבודה ברמת גימור גבוהה, תוך הקפדה על מקצועיות, אמינות ושירות אישי.<br>
@@ -836,9 +856,9 @@
     <div class="section-tag">📸 הפרויקטים שלנו</div>
     <h2 class="section-title">גלריית עבודות</h2>
     <p class="section-sub">הצצה לחלק מהפרויקטים שביצענו – איכות שמדברת בעד עצמה.</p>
+    <!-- CHANGE 1: Single centered gallery button -->
     <div class="gallery-btns">
-      <button class="gallery-btn" onclick="openGallery('renovations')">🔨 גלריית שיפוצים</button>
-      <button class="gallery-btn" onclick="openGallery('ac')">❄️ גלריית שיפוצי מיזוג</button>
+      <button class="gallery-btn" onclick="openGallery('all')">📸 גלרייה תמונות - עבודות</button>
     </div>
   </div>
 </section>
@@ -846,7 +866,7 @@
 <!-- GALLERY MODAL -->
 <div class="gallery-modal" id="galleryModal">
   <button class="gallery-close" onclick="closeGallery()">✕</button>
-  <div class="gallery-title-modal" id="galleryTitleModal">גלריית שיפוצים</div>
+  <div class="gallery-title-modal" id="galleryTitleModal">גלריית עבודות</div>
   <div class="gallery-modal-inner">
     <button class="gallery-arrow" onclick="prevImage()">‹</button>
     <div class="gallery-img-wrap" id="galleryImgWrap">
@@ -858,7 +878,7 @@
     </div>
     <button class="gallery-arrow" onclick="nextImage()">›</button>
   </div>
-  <div class="gallery-counter" id="galleryCounter">1 / 13</div>
+  <div class="gallery-counter" id="galleryCounter">1 / 23</div>
 </div>
 
 <!-- CONTACT -->
@@ -942,9 +962,9 @@
     scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
+  // CHANGE 1: Single combined gallery with all images
   const galleries = {
-    renovations: { title: 'גלריית שיפוצים ובנייה', images: ['image5.jpeg','image6.jpeg','image9.jpeg','image11.jpeg','image13.jpeg','image15.jpeg','image16.jpeg','image17.jpeg','image18.jpeg','image19.jpeg','image20.jpeg','image21.jpeg','image22.jpeg','image23.jpeg','image24.jpeg','image25.jpeg','image26.jpeg','image27.jpeg'] },
-    ac: { title: 'גלריית מיזוג', images: ['image7.jpeg','image8.jpeg','image10.jpeg','image12.jpeg','image14.jpeg'] }
+    all: { title: 'גלריית עבודות', images: ['image5.jpeg','image6.jpeg','image9.jpeg','image11.jpeg','image13.jpeg','image15.jpeg','image16.jpeg','image17.jpeg','image18.jpeg','image19.jpeg','image20.jpeg','image21.jpeg','image22.jpeg','image23.jpeg','image24.jpeg','image25.jpeg','image26.jpeg','image27.jpeg','image7.jpeg','image8.jpeg','image10.jpeg','image12.jpeg','image14.jpeg'] }
   };
   let currentGallery = null;
   let currentIndex = 0;
